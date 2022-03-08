@@ -13,9 +13,9 @@ public class AlertRabbit {
             scheduler.start();
             JobDetail job = JobBuilder.newJob(Rabbit.class).build();
             Properties properties = new Properties();
+            String interval = properties.getProperty("rabbit.interval");
             SimpleScheduleBuilder times = simpleSchedule()
-                    .withIntervalInSeconds(Integer.parseInt(properties.getProperty(properties.toString())))
-                    .repeatForever();
+                    .withIntervalInSeconds(Integer.parseInt(interval));
                     Trigger trigger = newTrigger()
                     .startNow()
                     .withSchedule(times)
